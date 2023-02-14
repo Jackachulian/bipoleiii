@@ -12,11 +12,6 @@ if __name__ == "__main__":
 
 import os, random
 
-try:
-    import dill as pickle     #yes these are actual module names
-except:
-    import pickle
-
 import datetime
 
 import util, client
@@ -225,7 +220,9 @@ def load_all_files():
     if saves_updated:   #Will not run if the files are up to date, this is set to false every time a file is updated
         return False
 
-    files = os.listdir('saves')
+    # TODO: find a way to load, save and store saves
+    # files = os.listdir('./saves')
+    files = []
 
     file_list = []
 

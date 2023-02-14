@@ -6,10 +6,17 @@
     <title>Hello World!</title>
     <!-- linking to PyScript assets -->
     <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <link rel="stylesheet" href="./style.css" />
     <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
   </head>
   <body>
   <!-- Put Python code inside the the <py-script> tag -->
-    <py-script>display("Hello World!")</py-script>
+    <py-config>
+      [[fetch]]
+      files = [
+      'main.py'
+      ]
+    </py-config>
+    <py-script src="./main.py"></py-script>
   </body>
 </html>

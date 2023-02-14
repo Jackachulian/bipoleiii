@@ -2,12 +2,6 @@
 
 version = 'Alpha 5.17.2020'
 
-import sys
-if __name__ == "__main__":
-    sys.exit("Make sure you are running the BipoleIII.py file!")
-
-sys.path.insert(0, 'lib/')
-
 import random, copy, os
 
 
@@ -580,3 +574,9 @@ def quit_game():
     game_loop = False
     global choice_loop
     choice_loop = False
+
+# ====
+# Runs the game
+# ====
+if __name__ == "__main__":
+    mainloop()
