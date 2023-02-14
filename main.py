@@ -1,1 +1,2 @@
-print("main.py existence")
+import terminal
+terminal.write_line("BIPOLE GAMING !!!")
