@@ -6,6 +6,7 @@
 width = 50      #Width of dividers and such
 ld = 1    #Line delay. The length (in seconds) of the standard status line
 
+import asyncio
 from time import sleep
 import random, math, sys, re, os
 import game as g
@@ -35,7 +36,7 @@ def italic(t):
 def url(t):
     return c.URL + t + c.RESET
 
-def line(x='', t=None, w=False, reset_end=True):
+async def line(x='', t=None, w=False, reset_end=True):
     #Output a single line, and then wait the specified amount (seconds).
     #Then, if w, wait for any input before proceeding
     if not x:   #Failsafe
@@ -57,10 +58,19 @@ def line(x='', t=None, w=False, reset_end=True):
     if w:      #If there should be a wait after
         entry('')
 
+def iline(x='', t=None, w=False, reset_end=True):
+    #Output a single line, and then wait the specified amount (seconds).
+    #Then, if w, wait for any input before proceeding
+    if not x:   #Failsafe
+        return
+
+    if reset_end:  #by default, a nomral format is placed at the end of each line
+        x += '{c.RESET}'
+    print(cf(x))
     
-def wait(t):
+async def wait(t):
     try:
-        sleep(t)
+        asyncio.sleep(t)
     except KeyboardInterrupt:
         g.quick_save(keyinterrupt=True)
     
@@ -101,7 +111,7 @@ def divider(title=None, x=width, c="="):
     else:
         line(str(c)*x, 0)
 
-def numchoice(choices, ft="either", prompt='Choose one:', invalidprompt='Enter a number or name', cancellable=True, cancel_index=None, cancel_label=None, return_item=False, flist=None, return_list=None, rows=1):
+async def numchoice(choices, ft="either", prompt='Choose one:', invalidprompt='Enter a number or name', cancellable=True, cancel_index=None, cancel_label=None, return_item=False, flist=None, return_list=None, rows=1):
     #Get a choice from the player. Responds to number indices and the name of the choice. Return the index of the choice they chose, unless return_item is true.
     
     if cancel_label:
@@ -137,7 +147,7 @@ def numchoice(choices, ft="either", prompt='Choose one:', invalidprompt='Enter a
                 
             
 
-        i = entry(prompt + " ", f="text")
+        i = await entry(prompt + " ", f="text")
         choice = None
         cindex = None
 
@@ -171,8 +181,6 @@ def numchoice(choices, ft="either", prompt='Choose one:', invalidprompt='Enter a
                 return choice_list[cindex]
         else:
             return cindex
-
-        line(invalidprompt, 0)
 
 
 auto=False
@@ -302,7 +310,7 @@ def dialog(msg, talker=None, noinput=False):
             line("Speed: Instant", 0)
     else:
         wait(0.5)
-        print()
+        line()
         
 
 def parse_command(com, val):

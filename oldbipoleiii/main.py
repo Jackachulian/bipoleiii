@@ -4,7 +4,7 @@ version = 'Alpha 5.17.2020'
 
 import random, copy, os
 
-
+import asyncio
 
 from client import *
 from colors import TextCodes as c
@@ -468,7 +468,7 @@ def save():
 game_loop = False
 choice_loop = True
 
-def mainloop():
+async def mainloop():
     global game_loop
     game_loop = True
 
@@ -481,12 +481,12 @@ def mainloop():
     }
     
     while game_loop:
-        title_screen()
+        await title_screen()
         global choice_loop
         choice_loop = True
 
         while choice_loop:
-            choice = numchoice(list(choices.keys()), return_item=True)
+            choice = await numchoice(list(choices.keys()), return_item=True)
 
             if choice:
                 choices[choice]()
@@ -495,7 +495,7 @@ def mainloop():
             
         #If the code gets here then the player died and was sent back to the menu
     #If the code reaches here the player has exited the mainloop
-    line('See ya!', 0)
+    iline('See ya!', 0)
     
 
 def gameloop():
@@ -505,17 +505,15 @@ def gameloop():
         game.level += 1
 
 
-def title_screen():
-    set_line_delay(0)
-    line()
-    line()
-    line(f'   {c.GREY}{" "*(36-len(version))}Ver. {version} ')
-    line('    {c.GREY}=========================================')
-    line('    ************** {c.RED}{c.BOLD}{c.URL}BIPOLE III{c.URL_OFF}{c.BOLD_OFF}{c.RESET} ***************')
-    line('    ** {c.BLUE}{c.ITALIC}Conspiracy of the Mechanical Entity{c.ITALIC_OFF}{c.NORMAL} **')
-    line('    {c.GREY}=========================================')
-    line()
-    set_line_delay(1)
+async def title_screen():
+    iline()
+    iline()
+    iline(f'   {c.GREY}{" "*(36-len(version))}Ver. {version} ')
+    iline('    {c.GREY}=========================================')
+    iline('    ************** {c.RED}{c.BOLD}{c.URL}BIPOLE III{c.URL_OFF}{c.BOLD_OFF}{c.RESET} ***************')
+    iline('    ** {c.BLUE}{c.ITALIC}Conspiracy of the Mechanical Entity{c.ITALIC_OFF}{c.NORMAL} **')
+    iline('    {c.GREY}=========================================')
+    iline()
 
 def start_new_game(onlysetup=False):
     global choice_loop
@@ -579,4 +577,5 @@ def quit_game():
 # Runs the game
 # ====
 if __name__ == "__main__":
-    mainloop()
+    asyncio.run(mainloop())
+    
