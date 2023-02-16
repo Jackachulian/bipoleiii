@@ -1,13 +1,17 @@
 /** The main element where output is written to. */
-const output = document.getElementById("output");
+export const output = document.getElementById("output");
+
+export function clear()
+{
+    output.textContent = ''
+}
 
 /**
  * Append an element to output.
  * @param {string} text text to put in the element
  * @param {string} element element tag
  */
-function addElement(text, element)
-{
+function write(text, element) {
     let p = document.createElement(element);
     p.innerHTML = text;
     output.append(p);
@@ -18,13 +22,18 @@ function addElement(text, element)
  * @param {string} text 
  */
 export function line(text) {
-    addElement(text, "p")
+    write(text, "p")
 }
 
 /**
  * 
- * @param {*} text 
+ * @param {string} text 
  */
 export function header(text) {
-    addElement(text, "h1")
+    write(text, "h1")
+}
+
+export function textInput()
+{
+    let input = document.createElement("input");
 }

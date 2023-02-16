@@ -1,5 +1,23 @@
-import { line } from "./display.js";
+import { Choice } from "./choice.js";
+import { clear, line, output } from "./display.js";
+import { MainMenu, Window } from "./window.js";
 
-line("bipole test")
-line("bipole test 2")
-line("bipole test 3")
+/** Stores the current window. */
+var currentWindow = null
+
+/**
+ * 
+ * @param {Window} window the window to set & display
+ */
+export function setWindow(window) {
+    currentWindow = window;
+    clear();
+    currentWindow.display();
+}
+
+export function handleInput(input) {
+    currentWindow.handleInput(input)
+}
+
+const mainMenu = new MainMenu()
+setWindow(mainMenu)
