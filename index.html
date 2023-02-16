@@ -1,23 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello World!</title>
-    <!-- linking to PyScript assets -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
-  </head>
-  <body>
-    <div id="output"></div>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="style.css" rel="stylesheet">
 
-    <py-config>
-      [[fetch]]
-      files = [
-      'terminal.py'
-      ]
-    </py-config>
-    <py-script src="./main.py"></py-script>
-  </body>
+        <!-- Dark mode -->
+        <style>
+        :root {
+            --global-font-size: 15px;
+            --global-line-height: 1.4em;
+            --global-space: 10px;
+            --font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
+            serif;
+            --mono-font-stack: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
+            serif;
+            --background-color: #222225;
+            --page-width: 60em;
+            --font-color: #e8e9ed;
+            --invert-font-color: #222225;
+            --secondary-color: #a3abba;
+            --tertiary-color: #a3abba;
+            --primary-color: #62c4ff;
+            --error-color: #ff3c74;
+            --progress-bar-background: #3f3f44;
+            --progress-bar-fill: #62c4ff;
+            --code-bg-color: #3f3f44;
+            --input-style: solid;
+            --display-h1-decoration: none;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="terminal-nav">
+                <header class="terminal-logo">
+                    <div class="logo">Bipole III</div>
+                </header>
+                <nav class="terminal-nav"></header>
+            </div>
+        </div>
+        <div id="output" class="container">
+
+        </div>
+
+        <script src="scripts/main.js" type="module"></script>
+    </body>
 </html>
