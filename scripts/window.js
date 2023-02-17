@@ -1,5 +1,5 @@
 import { Choice } from "./choice.js"
-import { line } from "./display.js"
+import { clear, line, output } from "./display.js"
 import { setWindow } from "./main.js"
 
 /**
@@ -41,17 +41,17 @@ export class ChoiceMenu extends Window {
     }
 }
 
-export class MainMenu extends ChoiceMenu {
-    constructor() {
-        super({
-            "1": {label: "New Game", effect: () => setWindow(new NewGame())},
-            "2": {label: "Load Game", effect: () => {clear(); line("Loading not implemented"); this.display()}},
-        })
+export class TextInputMenu extends Window {
+    constructor(prompt){
+        super()
+        this.prompt = prompt;
     }
-}
 
-export class NewGame extends Window {
     display() {
-        line("Choose a name...")
+        line(this.prompt)
+
+        this.input = document.createElement("input")
+        this.input.type = "text"
+        output.append(this.input)
     }
 }

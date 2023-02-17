@@ -32,8 +32,3 @@ export function line(text) {
 export function header(text) {
     write(text, "h1")
 }
-
-export function textInput()
-{
-    let input = document.createElement("input");
-}

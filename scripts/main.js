@@ -1,6 +1,7 @@
 import { Choice } from "./choice.js";
 import { clear, line, output } from "./display.js";
-import { MainMenu, Window } from "./window.js";
+import { MainMenu } from "./menus.js";
+import { Window } from "./window.js";
 
 /** Stores the current window. */
 var currentWindow = null
