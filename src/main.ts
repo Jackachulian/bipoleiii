@@ -1,10 +1,10 @@
-import { Choice } from "./choice.js";
-import { clear, line, output } from "./display.js";
-import { MainMenu } from "./menus.js";
-import { Window } from "./window.js";
+import { clear, line, output } from "./display";
+import { MainMenu } from "./menus";
+import { Window } from "./window";
 
 /** Stores the current window. */
-var currentWindow = null
+var currentWindow: Window = new MainMenu()
+setWindow(currentWindow)
 
 /**
  * 
@@ -13,6 +13,7 @@ var currentWindow = null
 export function setWindow(window) {
     currentWindow = window;
     clear();
+    history.pushState(null, '', window.path)
     currentWindow.display();
 }
 
@@ -20,5 +21,3 @@ export function handleInput(input) {
     currentWindow.handleInput(input)
 }
 
-const mainMenu = new MainMenu()
-setWindow(mainMenu)

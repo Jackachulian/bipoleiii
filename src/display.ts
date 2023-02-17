@@ -1,5 +1,5 @@
 /** The main element where output is written to. */
-export const output = document.getElementById("output");
+export const output: HTMLElement = document.getElementById("output") || document.body;
 
 export function clear()
 {

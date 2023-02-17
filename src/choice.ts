@@ -1,15 +1,32 @@
-import { output } from "./display.js";
+import { output } from "./display";
+
+export type Choice = {
+    /**
+     * All inputs that will select this choice
+     */
+    input: string[];
+    /**
+     * Label displayed for this choice
+     */
+    label: string;
+    /**
+     * Effect when this choice is chosen.
+     */
+    effect: () => void;
+}
 
 /**
  * Stores some choices that can be given to the player
  */
-export class Choice {
+export class ChoiceGroup {
+    choices: Choice[]
+
     /**
      * 
-     * @param {*} choices should be an object of key-value pairs.
+     * @param {Choice[]} choices should be an object of key-value pairs.
      * Key is input. Value is an object; label is what is displayed, effect is what is run when selected
      */
-    constructor(choices) {
+    constructor(choices: Choice[]) {
         this.choices = choices;
     }
 
