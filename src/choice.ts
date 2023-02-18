@@ -1,4 +1,5 @@
 import { output } from "./display";
+import { showCursor } from "./index";
 
 export type Choice = {
     /**
@@ -33,12 +34,20 @@ export class ChoiceGroup {
     /**
      * Writes this as a list element to output.
      */
-    display() {
+    display(selectedIndex: number) {
         let dl = document.createElement("dl")
-        for (const prop in this.choices) {
+        for (let i = 0; i < this.choices.length; i++) {
+            const choice = this.choices[i];
             let dt = document.createElement("dt")
-            dt.onclick = () => this.choices[prop].effect()
-            dt.innerHTML = `[${prop}] ${this.choices[prop].label}`
+            dt.onclick = () => choice.effect()
+
+            if (showCursor && i === selectedIndex)
+            {
+                dt.innerHTML = `<b>> [${i+1}] ${choice.label}</b>`
+            } else {
+                dt.innerHTML = `&nbsp;&nbsp;[${i+1}] ${choice.label}`
+            }
+
             dl.append(dt)
         }
         output.append(dl)
