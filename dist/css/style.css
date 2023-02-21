@@ -1,0 +1,59 @@
+.ascii {
+    white-space: pre;
+}
+
+.bipole-prompt-input {
+    border: none;
+    width: 400px;
+    border-radius: 0;
+    font-family: var(--font-stack);
+}
+
+input[type="text" i] {
+    padding: 0;
+}
+
+.bipole-prompt-input:active,
+.bipole-prompt-input:focus {
+    outline: none;
+    border: none;
+}
+
+button {
+    border: none;
+    display: inline-flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    padding-left: 2ch;
+    padding-right: 4ch;
+    font-family: inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+  }
+
+.bipole-line {
+    display: block;
+}
+
+.bipole-cursor {
+    color: var(--primary-color);
+}
+
+.btn.btn-ghost.bipole-cursor {
+    color: var(--primary-color);
+    padding-left: 0;
+}
+
+.btn.btn-ghost.bipole-cursor::before {
+    content: "> ";
+    width: 2ch;
+}
+
