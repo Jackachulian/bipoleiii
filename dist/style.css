@@ -1,0 +1,55 @@
+button, .btn, input[type=text], input[type=text]:focus {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.btn.btn-ghost {
+    color: var(--font-color);
+}
+
+.btn.btn-ghost.bipole-cursor {
+    color: var(--primary-color);
+}
+
+
+.btn {
+    padding-left: 2ch;
+    padding-right: 4ch;
+    width:auto;
+}
+
+
+.btn.bipole-cursor {
+    padding-left: 0;
+}
+
+.btn.bipole-cursor::before {
+    content: "> ";
+    white-space: pre;
+}
+
+.ascii {
+    white-space: pre;
+}
+
+.bipole-line {
+    display: block;
+}
+
+.bipole-prompt.bipole-cursor .bipole-pointer {
+    color: var(--primary-color)
+}
+
+.bipole-prompt-input {
+    width: calc(100% - 2ch);
+}
+
+.bipole-toast {
+    padding-left: 2ch;
+    padding-bottom: 1em;
+}
+
+.bipole-error {
+    color: var(--error-color);
+}

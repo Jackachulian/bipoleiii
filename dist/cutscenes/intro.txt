@@ -1,0 +1,62 @@
+{noinput}
+wait 0.5
+heading [Year 1998]
+heading [Nation of Isle - Continent of Bipole]
+{name} is sitting at his porch in front of Isle Beach.
+{delay=6} ...{noinput}
+???: {delay=4} AHHHHHHHH!!!
+{name}: Was that a scream?
+He runs over to the shore where he heard the scream. Several people stood around a boat.
+Pedestrian: {delay=3} There's...{noinput}
+Pedestrian: {delay=2} There's... a corpse in the boat...
+{name}: What?!
+({name} walks over to the boat and sees the corpse)
+(He examines the corpse's wounds)
+{name}: They look like they were attacked by something.
+(He notices the knife the corpse was holding)
+{name}: Strange, it doesn't look like knife wounds...
+{name}: They were dead when you found them, yes?
+Pedestrian: They were dead when they reached the shore, where I found them.
+Pedestrian: I screamed when I saw them, and nearby people flocked to the scene.
+{name}: {delay=2} Hhhmmmmmmmmmmmmmmmmmm.......
+He notices cuts on the corpse's arm.
+Engraved into the corpse's arm is the word {c=RED}'MECH'{c=RESET}.
+{name}: Mech?
+{name}: If they were returning from sea, it's possible they may have gone too far and reached {c=BLUE2}Rogue{c=RESET} territory.
+{name}: Though it's just speculation, they may have come into contact with some citizens of the Rogue country...
+{name}: Don't worry, I'll be taking care of this.
+{name} dispells the crowd and sends a signal.
+line 0.5 ======
+line 0.5 ============
+line 0.5 ========================
+line 1 ================================================
+heading [Later...]
+heading [Isle Government Head Office]
+Chancellor of Isle: Based on the evidence we have, it is likely that the {c=BLUE2}{c=BOLD}Rogue{c=RESET} government is working on a secret technology.
+Chancellor: This would explain their split from the {c=BEIGE}Territories of Bipole{c=RESET}.
+Chancellor: {name}, you will go to {c=BLUE2}Rogue{c=RESET} and investigate the situation.
+Chancellor: You are our most experienced agent, so we will entrust you to act accordingly if something threatens the safety of our nation.
+Chancellor: To support you, you will be accompanied by {c=GREEN}Norshu{c=RESET}.
+Norshu: Spells, weapons, ULTs? They're yours, my homie, as long as you have enough {c=YELLOW}Gold{c=RESET}!
+Chancellor: Norshu can provide additional items for you, if you need them.
+Norshu: Remember, {name}, I don't accept credit!
+choice yes_or_no 0 [Would you like to read the history of ROGUE prior to leaving?]
+if yes
+heading ==================================================
+Rogue was originally part of the Territories of Bipole. 
+In 1789, the Bipole Rogue War split the mainland Bipole continent into the Territories of Bipole and the Nation of Rogue.
+For unknown reasons, the Territory of Rogue received financial support from the Nations of Shade, {noinput}
+despite the Bipole Rogue War's battle for independence being based on legalizing actions such as murder and destruction of property. 
+After becoming independant, Rogue only had three laws:
+{delay=0.5} 1. Do not harm members of government
+{delay=0.5} 2. Do not enter government buildings if you are not authorized to do so
+{delay=0.5} 3. Do not destroy government property or use government property if you are not authorized to do so
+These laws made the Territories of Bipole and the Nation of Isle question Rogue's motives. 
+Though there were no confirmed illicit intentions from Rogue to the rest of the Bipole continent, {noinput}
+many national officials feared the potential actions that the Rogue government may be performing outside of the public view.
+heading ==================================================
+end
+if no
+wait 0.5
+end
+And so {name} and Norshu enter the Nation of Rogue to start their investigation...
