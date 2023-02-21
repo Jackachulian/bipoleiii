@@ -1,5 +1,5 @@
 import { clear, line, output } from "./display";
-import { MainMenu } from "./menus";
+import { MainMenu } from "./mainmenus";
 import { Window } from "./window";
 
 /** Stores the current window path. */
@@ -28,16 +28,15 @@ export function gotoWindow(window: Window) {
     // store current window and add to window stack
     windows.push(window)
     window.display();
-    console.log(windows)
 }
 
 /**
  * Move back one step in the window history.
  */
 export function back() {
+    if (windows.length<=1) return; // do not exit outermost window
     windows.pop()
     currentWindow().display()
-    console.log(windows)
 }
 
 export function handleInput(event: KeyboardEvent) {
