@@ -114,9 +114,11 @@ export class IndexedElementWindow extends Window {
     }
 
     setSelection(index: number) {
-        this.handleElementDeselected(this.selectableElements[this.selectedIndex], this.selectedIndex)
-        this.selectedIndex = index;
-        this.handleElementSelected(this.selectableElements[this.selectedIndex], this.selectedIndex)
+        if (this.selectableElements.length > 0) {
+            this.handleElementDeselected(this.selectableElements[this.selectedIndex], this.selectedIndex)
+            this.selectedIndex = index;
+            this.handleElementSelected(this.selectableElements[this.selectedIndex], this.selectedIndex)
+        }
     }
 
     moveSelection(delta: number) {
@@ -215,7 +217,7 @@ export class ChoiceMenu extends IndexedElementWindow {
 export class TextInputMenu extends ChoiceMenu {
     prompt: string;
     inputElem: HTMLInputElement
-    maxlength: number = 0;
+    maxlength: number = 24;
 
     constructor(id: string, prompt: string){
         super(id)
@@ -247,15 +249,24 @@ export class TextInputMenu extends ChoiceMenu {
         let thisWindow = this;
 
         let ie = this.inputElem;
-        this.inputElem.onkeydown = function(event){
-            if (thisWindow.handleArrowKeys(event)) ie.blur();
 
-            if (event.code === 'Enter') {
+        // select this input whenever clicked/focused
+        this.inputElem.onclick = () => thisWindow.setSelection(0);
+        this.inputElem.onfocus = () => thisWindow.setSelection(0);
+
+        // handles key inputs differently
+        this.inputElem.onkeydown = (ev) => {
+            // if arrow keys, send info to indexedelementmenu side, blur if navigated off via arrows
+            if (thisWindow.handleArrowKeys(ev)) ie.blur();
+
+            // submit input value as text on enter
+            if (ev.code === 'Enter') {
                 handleTextSubmit(ie.value)    
             }
 
+            // set error color when text is too long (for some reason only works when run afer timeout)
             setTimeout(() => {
-                if (ie.value.length > 24) {
+                if (ie.value.length > this.maxlength) {
                     ie.classList.add("bipole-error")
                 } else {
                     ie.classList.remove("bipole-error")

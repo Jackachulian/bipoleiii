@@ -1,9 +1,14 @@
+import { CutsceneWindow } from "./cutscene";
 import { clear, line, output } from "./display";
+import { HomeMenu } from "./homemenus";
 import { MainMenu } from "./mainmenus";
 import { Window } from "./window";
 
 /** Stores the current window path. */
-const windows: Window[] = [new MainMenu()]
+let rootWindow: Window = new MainMenu();
+// let rootWindow: Window = new CutsceneWindow("test", new HomeMenu());
+
+const windows: Window[] = [rootWindow]
 
 export let showCursor: boolean = true;
 

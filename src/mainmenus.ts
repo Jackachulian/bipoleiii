@@ -2,6 +2,7 @@ import { back, gotoWindow } from "./index"
 import { button, clear, line } from "./display"
 import { ChoiceMenu, TextInputMenu, universalBack } from "./window";
 import { HomeMenu } from "./homemenus";
+import { CutsceneWindow } from "./cutscene";
 
 // Main Menu. the landing page for the game
 export class MainMenu extends ChoiceMenu {
@@ -53,7 +54,7 @@ export class NameConfirm extends ChoiceMenu {
     constructor(selectedName: string) {
 
         super("newgame/confirm", [
-            {input: ["Z", "KeyZ", "KeyY"], label: "Yes", effect: () => this.goto(new HomeMenu())},
+            {input: ["Z", "KeyZ", "KeyY"], label: "Yes", effect: () => this.goto(new CutsceneWindow("test", new HomeMenu()))},
             universalBack("No")
         ], `Are you sure you want to be named <span class="hljs-built_in">${selectedName}</span>?`)
 

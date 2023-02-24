@@ -1,0 +1,23 @@
+<header>Test Cutscene</header>
+This is a Test<br>
+{delay=2} This should be slow<br>
+{delay=0.5} This should be fast<br>
+{delay=1} This shouldn't wait for input{noinput}<br>
+This <span class="blue">should</span> be <span class="red">colorful</span>!<br>
+Make a choice?<br noinput="true">
+<choice>z,yes,Yes x,no,No</choice>
+
+<label>yes</label>
+You chose yes<br>
+<goto>end</goto>
+
+This shouldn't display
+
+<label>no</label>
+You chose no<br>
+<goto>end</goto>
+
+This shouldn't display either
+
+<label>end</label>
+End of cutscene<br>

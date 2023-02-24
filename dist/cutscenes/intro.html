@@ -1,0 +1,64 @@
+<header>Year 1998</header>
+<header>Nation of Isle - Continent of Bipole</header>
+{name} is sitting at his porch in front of Isle Beach.<br>
+{delay=3} ...{noinput}<br>
+???: {delay=2} AHHHHHHHH!!!<br>
+{name}: {delay=1} Was that a scream?<br>
+He runs over to the shore where he heard the scream. Several people stood around a boat.<br>
+Pedestrian: {delay=2} There's...{noinput}<br>
+Pedestrian: {delay=1.5} There's... a corpse in the boat...<br>
+{name}: {delay=1} What?!<br>
+({name} walks over to the boat and sees the corpse)<br>
+(He examines the corpse's wounds)<br>
+{name}: It looks like they were attacked by something.<br>
+(He notices the knife the corpse was holding)<br>
+{name}: Strange, it doesn't look like knife wounds...<br>
+{name}: They were dead when you found them, yes?<br>
+Pedestrian: They were dead when they reached the shore, where I found them.<br>
+Pedestrian: I screamed when I saw them, and nearby people flocked to the scene.<br>
+{name}: {delay=2} Hhhmmmmmmmmmmmmmmmmmm.......<br>
+{delay=1} He notices cuts on the corpse's arm.<br>
+Engraved into the corpse's arm is the word <span class="red">'MECH'</span>.<br>
+{name}: Mech?<br>
+{name}: If they were returning from sea, it's possible they may have gone too far and reached <span class="blue">Rogue</span> territory.<br>
+{name}: Though it's just speculation, they may have come into contact with some citizens of the Rogue country...<br>
+{name}: Don't worry, I'll be taking care of this.<br>
+{name} dispells the crowd and sends a signal.<br>
+<span class="instant">======</span>{wait=0.5}{noinput}<br>
+<span class="instant">============</span>{wait=0.5}{noinput}<br>
+<span class="instant">========================</span>{wait=0.5}{noinput}<br>
+<span class="instant">================================================</span>{wait=1}{noinput}<br>
+<i>Later...</i><br>
+<header>Isle Government Head Office</header><br>
+Chancellor of Isle: Based on the evidence we have, it is likely that the <span class="blue"><b>Rogue</b></span> government is working on a secret technology.<br>
+Chancellor: This would explain their split from the <span class="beige">Territories of Bipole</span>.<br>
+Chancellor: {name}, you will go to <span class="blue">Rogue</span> and investigate the situation.<br>
+Chancellor: You are our most experienced agent, so we will entrust you to act accordingly if something threatens the safety of our nation.<br>
+Chancellor: To support you, you will be accompanied by <span class="green">Norshu</span>.<br>
+Norshu: Spells, weapons, ULTs? They're yours, my homie, as long as you have enough <span class="yellow">Gold</span>!<br>
+Chancellor: Norshu can provide additional items for you, if you need them.<br>
+Norshu: Remember, {name}, I don't accept credit!<br>
+[Would you like to read the history of ROGUE prior to leaving?]
+<choice>z,yes,Yes x,no,No</choice>
+
+<label>yes</label>
+<header>==================================================</header>
+Rogue was originally part of the Territories of Bipole. <br>
+In 1789, the Bipole Rogue War split the mainland Bipole continent into the Territories of Bipole and the Nation of Rogue.<br>
+For unknown reasons, the Territory of Rogue received financial support from the Nations of Shade, {noinput}<br>
+despite the Bipole Rogue War's battle for independence being based on legalizing actions such as murder and destruction of property. <br>
+After becoming independant, Rogue only had three laws:{wait=1}{noinput}<br wait="false">
+{delay=0.5} 1. Do not harm members of government{wait=0.5}{noinput}<br wait="false">
+{delay=0.5} 2. Do not enter government buildings if you are not authorized to do so{wait=0.5}{noinput}<br wait="false">
+{delay=0.5} 3. Do not destroy government property or use government property if you are not authorized to do so{wait=1}{noinput}<br>
+{delay=1} These laws made the Territories of Bipole and the Nation of Isle question Rogue's motives.<br>
+Though there were no confirmed illicit intentions from Rogue to the rest of the Bipole continent, many national officials feared the potential actions that the Rogue government may be performing outside of the public view.<br>
+heading ==================================================<br>
+<goto>end</goto>
+
+<label>no</label>
+<!-- e -->
+<goto>end</goto>
+
+<label>end</label>
+And so {name} and Norshu enter the Nation of Rogue to start their investigation...<br>
