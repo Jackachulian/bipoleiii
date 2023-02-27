@@ -1,7 +1,8 @@
 import { line, output } from "./display";
 import { gotoWindow } from "./index";
 import { settings } from "./user";
-import { ChoiceMenu, Window } from "./window";
+import { Window } from "./window";
+import { ChoiceMenu } from "./windowtypes/choice";
 
 export class CutsceneWindow extends ChoiceMenu {
     name: string

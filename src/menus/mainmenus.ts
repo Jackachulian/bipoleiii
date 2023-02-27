@@ -1,8 +1,11 @@
-import { back, gotoWindow } from "./index"
-import { button, clear, line } from "./display"
-import { ChoiceMenu, TextInputMenu, universalBack } from "./window";
-import { HomeMenu } from "./homemenus";
-import { CutsceneWindow } from "./cutscene";
+import { back, gotoWindow } from "../index"
+import { button, clear, line } from "../display"
+import { HomeMenu } from "./home";
+import { CutsceneWindow } from "../cutscene";
+import { loadSave, save } from "../user";
+import { newSave } from "../save";
+import { ChoiceMenu, universalBack } from "../windowtypes/choice";
+import { TextInputMenu } from "../windowtypes/textinput";
 
 // Main Menu. the landing page for the game
 export class MainMenu extends ChoiceMenu {
@@ -54,7 +57,10 @@ export class NameConfirm extends ChoiceMenu {
     constructor(selectedName: string) {
 
         super("newgame/confirm", [
-            {input: ["Z", "KeyZ", "KeyY"], label: "Yes", effect: () => this.goto(new CutsceneWindow("test", new HomeMenu()))},
+            {input: ["Z", "KeyZ", "KeyY"], label: "Yes", effect: () => {
+                loadSave( newSave(selectedName) )
+                this.goto(new CutsceneWindow("test", new HomeMenu()))
+            }},
             universalBack("No")
         ], `Are you sure you want to be named <span class="hljs-built_in">${selectedName}</span>?`)
 

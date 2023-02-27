@@ -1,7 +1,7 @@
 import { CutsceneWindow } from "./cutscene";
 import { clear, line, output } from "./display";
-import { HomeMenu } from "./homemenus";
-import { MainMenu } from "./mainmenus";
+import { HomeMenu } from "./menus/home";
+import { MainMenu } from "./menus/mainmenus";
 import { Window } from "./window";
 
 /** Stores the current window path. */
