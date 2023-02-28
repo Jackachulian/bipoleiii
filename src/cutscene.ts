@@ -1,4 +1,3 @@
-import { line, output } from "./display";
 import { gotoWindow } from "./index";
 import { settings } from "./user";
 import { Window } from "./window";
@@ -15,6 +14,7 @@ export class CutsceneWindow extends ChoiceMenu {
     writing: boolean
     charDelay: number
     charDelayMult: number
+    out: HTMLElement
 
     /** Set to true when {noinput} is read. Doesn't wait for user input on the next <br>. */
     noInput: boolean
@@ -31,7 +31,7 @@ export class CutsceneWindow extends ChoiceMenu {
     static parser: DOMParser = new DOMParser();
 
     constructor(name: string, displayAfter: Window) {
-        super("cutscene_"+name)
+        super()
         this.name = name;
         this.displayAfter = displayAfter;
         this.nodeIndex = 0;
@@ -42,8 +42,9 @@ export class CutsceneWindow extends ChoiceMenu {
         this.makingChoice = false;
     }
 
-    display() {
-        super.display();
+    display(out: HTMLElement) {
+        this.out = out;
+        super.display(out);
         this.playCutscene();
     }
 
@@ -119,13 +120,13 @@ export class CutsceneWindow extends ChoiceMenu {
 
                 this.makingChoice = true;
                 this.writing = false;
-                this.displayChoices();
+                this.displayChoices(this.out);
                 this.setSelection(0);
                 return;
             }
         }
         this.outputNode.scrollIntoView();
-        output.append(this.outputNode)
+        this.out.append(this.outputNode)
 
         this.parseNodeByChar()
     }
@@ -239,7 +240,7 @@ export class CutsceneWindow extends ChoiceMenu {
                         }
                     }
                     this.outputNode.innerHTML = this.currentNodeText;
-                    output.append(this.outputNode)
+                    this.out.append(this.outputNode)
 
                     this.nodeIndex++;
                     // stop looping when a BR is displayed or end is reached

@@ -5,14 +5,14 @@ export class IndexedElementWindow extends Window {
     selectedIndex: number
     direction: "top-bottom" | "left-right" = "left-right"
 
-    constructor(path: string) {
-        super(path)
+    constructor() {
+        super()
         this.selectedIndex = 0;
         this.selectableElements = []
     }
 
-    display(): void {
-        super.display()
+    display(out: HTMLElement): void {
+        super.display(out)
         // clears any existing selectable elements (this is being redrawn)
         this.selectableElements = []
     }

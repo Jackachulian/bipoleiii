@@ -1,4 +1,4 @@
-import { button, line, output } from "../display";
+import { button, line } from "../display";
 import { back } from "../index";
 import { IndexedElementWindow } from "./indexedelement";
 
@@ -26,35 +26,35 @@ export class ChoiceMenu extends IndexedElementWindow {
     prompt: string | null
     
 
-    constructor(path: string, choices: Choice[] = [], prompt: string | null = null){
-        super(path)
+    constructor(choices: Choice[] = [], prompt: string | null = null){
+        super()
         this.choices = choices
         this.prompt = prompt;
     }
 
-    display() {
-        super.display();
-        this.displayAboveChoices();
-        this.displayChoices()
+    display(out: HTMLElement) {
+        super.display(out);
+        this.displayAboveChoices(out);
+        this.displayChoices(out)
         this.setSelection(0)
     }
 
-    displayAboveChoices() {
-        if (this.prompt) line(this.prompt);
+    displayAboveChoices(out: HTMLElement) {
+        if (this.prompt) line(this.prompt, out);
     }
 
-    displayChoices() {
+    displayChoices(out: HTMLElement) {
         let listElement = document.createElement("div")
         listElement.classList.add("ascii")
 
         for (let i = 0; i < this.choices.length; i++) {
             const choice = this.choices[i];
             let buttonElem = button(`[${choice.input[0]}] ${choice.label}`, () => choice.effect())
-            output.append(buttonElem)
+            out.append(buttonElem)
             this.selectableElements.push(buttonElem)
         }
 
-        output.append(listElement)
+        out.append(listElement)
     }
 
     addChoice(choice: Choice) {

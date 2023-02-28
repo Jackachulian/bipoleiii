@@ -66,3 +66,19 @@ button {
 .bipole-cutscene h2 {
     font-weight: 600;
 }
+
+.bipole-card {
+    color: var(--font-color);
+    white-space: pre;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.bipole-card .bipole-card-cursor {
+    opacity: 0;
+}
+
+.bipole-card.bipole-cursor .bipole-card-cursor {
+    opacity: 1;
+    color: var(--primary-color);
+}

@@ -8,15 +8,15 @@ import { ChoiceMenu, universalBack } from "../windowtypes/choice";
 import { TextInputMenu } from "../windowtypes/textinput";
 
 // Main Menu. the landing page for the game
-export class MainMenu extends ChoiceMenu {
+export class TitleScreen extends ChoiceMenu {
     constructor() {
-        super("", [
+        super([
             {input: ["1"], label: "New Game", effect: () => this.goto(new ChooseName())},
             {input: ["2"], label: "Load Game", effect: () => this.showToast("Loading not implemented")}
         ])
     }
 
-    displayAboveToast(): void {
+    displayAboveToast(out: HTMLElement): void {
         line(`
 ______ ___________ _____ _      _____   _____ _____ _____ 
 | ___ \\_   _| ___ \\  _  | |    |  ___| |_   _|_   _|_   _|
@@ -25,13 +25,13 @@ ______ ___________ _____ _      _____   _____ _____ _____
 | |_/ /_| |_| |   \\ \\_/ / |____| |___   _| |_ _| |_ _| |_ 
 \\____/ \\___/\\_|    \\___/\\_____/\\____/   \\___/ \\___/ \\___/
         
-        `)
+        `, out)
     }
 }
 
 export class ChooseName extends TextInputMenu {
     constructor() {
-        super("newgame", "Choose a name...")
+        super("Choose a name...")
         this.direction = "top-bottom"
         this.addChoice(universalBack())
         this.maxlength = 24;
@@ -56,7 +56,7 @@ export class NameConfirm extends ChoiceMenu {
 
     constructor(selectedName: string) {
 
-        super("newgame/confirm", [
+        super([
             {input: ["Z", "KeyZ", "KeyY"], label: "Yes", effect: () => {
                 loadSave( newSave(selectedName) )
                 this.goto(new CutsceneWindow("test", new HomeMenu()))

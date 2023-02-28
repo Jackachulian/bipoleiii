@@ -8,7 +8,11 @@ export default class Save {
     name: string
     hp: number
     maxHp: number
-    deck: Card[]
+
+    deck: Card[] = []
+    minDeckSize: number = 3;
+    maxDeckSize: number = 5
+    collection: Card[] = []
 
     /**
      * Create a new save file
@@ -16,11 +20,18 @@ export default class Save {
      */
     constructor(name: string) {
         this.name = name;
-        this.deck = []
     }
 
-    addToDeck(data: CardData) {
+    addToDeck(data: CardData): boolean {
+        if (this.deck.length >= this.maxDeckSize) return false;
         this.deck.push(new Card(data))
+        return true;
+    }
+
+    addToCollection(data: CardData): boolean {
+        if (this.deck.length <= this.minDeckSize) return false;
+        this.collection.push(new Card(data))
+        return true;
     }
 }
 
@@ -32,5 +43,11 @@ export function newSave(name: string): Save {
     save.addToDeck(punch)
     save.addToDeck(punch)
     save.addToDeck(fireball)
+    save.addToCollection(punch)
+    save.addToCollection(punch)
+    save.addToCollection(fireball)
+    save.addToCollection(punch)
+    save.addToCollection(punch)
+    save.addToCollection(fireball)
     return save;
 }  

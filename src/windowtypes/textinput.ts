@@ -1,5 +1,3 @@
-import { output } from "../display";
-import { handleTextSubmit } from "../index";
 import { ChoiceMenu } from "./choice";
 
 export class TextInputMenu extends ChoiceMenu {
@@ -7,19 +5,19 @@ export class TextInputMenu extends ChoiceMenu {
     inputElem: HTMLInputElement
     maxlength: number = 24;
 
-    constructor(id: string, prompt: string){
-        super(id)
+    constructor(prompt: string){
+        super()
         this.prompt = prompt;
     }
 
-    displayAboveChoices() {
-        super.displayAboveChoices();
-        this.displayTextInput();
+    displayAboveChoices(out: HTMLElement) {
+        super.displayAboveChoices(out);
+        this.displayTextInput(out);
     }
 
-    displayTextInput() {
+    displayTextInput(out: HTMLElement) {
         let promptElem = document.createElement("div");
-        output.append(promptElem)
+        out.append(promptElem)
         this.selectableElements.push(promptElem)
         promptElem.classList.add("bipole-prompt");
 

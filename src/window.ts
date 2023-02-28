@@ -1,4 +1,4 @@
-import { button, clear, line, output, space, writeElement } from "./display"
+import { button, clear, line, root, space, writeElement } from "./display"
 import { back, gotoWindow, handleInput, handleTextSubmit, showCursor } from "./index"
 
 /**
@@ -10,8 +10,7 @@ export class Window {
     /** "Notification" that can be drawn at the top of the window without redrawing everything */
     toast: HTMLElement
 
-    constructor(id: string = "") {
-        this.id = id;
+    constructor() {
         this.toast = document.createElement("div");
         this.toast.classList.add("bipole-toast")
     }
@@ -19,15 +18,19 @@ export class Window {
     /**
      * Display this to the screen.
      */
-    display() {
-        clear()
-        this.displayAboveToast();
-        output.append(this.toast)
+    display(out: HTMLElement) {
+        this.displayAboveToast(out);
+        out.append(this.toast)
         // further behaviour implemented in inheriting classes
     }
 
-    displayAboveToast() {
+    displayAboveToast(out: HTMLElement) {
         // to be overridden in subclasses
+    }
+
+    refresh(out: HTMLElement) {
+        clear(out);
+        this.display(out);
     }
 
     /**

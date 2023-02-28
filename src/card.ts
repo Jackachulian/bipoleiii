@@ -1,4 +1,5 @@
 import { Battler } from "./battle"
+import { save } from "./user"
 
 /** Information that a card uses. */
 export type CardData = {
@@ -23,10 +24,24 @@ export class Card {
         this.data = data
     }
 
+    sendToDeck(): boolean {
+        if (save.deck.length >= save.maxDeckSize) return false;
+        save.collection.splice(save.collection.findIndex((c) => c === this), 1)
+        save.deck.push(this)
+        return true;
+    }
+
+    sendToCollection(): boolean {
+        if (save.deck.length <= save.minDeckSize) return false;
+        save.deck.splice(save.deck.findIndex((c) => c === this), 1)
+        save.collection.push(this)
+        return true;
+    }
+
     createElement(): HTMLElement {
         let lines: string[] = []
         let currentLine = ""
-        for (let word in this.data.description.split(" ")) {
+        for (let word of this.data.description.split(" ")) {
             if (word.length + currentLine.length > 13) {
                 lines.push(currentLine)
                 currentLine = ""
@@ -35,19 +50,27 @@ export class Card {
                 lines.push(word.substring(0, 12)+"-")
                 word = word.substring(12)
             }
-            currentLine = currentLine + word;
+            currentLine = currentLine + " "+word;
         }
 
-        let text = `+---------------+
-| ${this.data.name.padEnd(13, " ")} |
-|               |
+        // Add remaining line and fill with empty lines
+        lines.push(currentLine)
+        while (lines.length < 5) {
+            lines.push(" ")
+        }
+
+        let text = `<span class="bipole-card-cursor">0-</span>              <span class="bipole-card-cursor">-0</span>
+<span class="bipole-card-cursor">|</span>/--------------\\<span class="bipole-card-cursor">|</span>
+ | ${this.data.name.padEnd(10, " ")} ${this.data.cost} | 
+ |              | 
 `
 
-        for (let line in lines) {
-            text += `| ${line.padEnd(13, " ")} |
+        for (let line of lines) {
+            text += ` |${line.padEnd(13, " ")} | 
 `
         }
-        text += "+---------------+"
+        text += `<span class="bipole-card-cursor">|</span>\\--------------/<span class="bipole-card-cursor">|</span>
+<span class="bipole-card-cursor">0-</span>              <span class="bipole-card-cursor">-0</span>`
 
         let elem = document.createElement("div")
         elem.classList.add("bipole-card")

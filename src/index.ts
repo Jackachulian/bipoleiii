@@ -1,12 +1,16 @@
-import { CutsceneWindow } from "./cutscene";
-import { clear, line, output } from "./display";
+import { clear, root } from "./display";
 import { HomeMenu } from "./menus/home";
-import { MainMenu } from "./menus/mainmenus";
+import { TitleScreen } from "./menus/title";
+import { newSave } from "./save";
+import { loadSave } from "./user";
 import { Window } from "./window";
 
+loadSave(newSave("Lead"))
+
 /** Stores the current window path. */
-let rootWindow: Window = new MainMenu();
+// let rootWindow: Window = new TitleScreen();
 // let rootWindow: Window = new CutsceneWindow("test", new HomeMenu());
+let rootWindow: Window = new HomeMenu();
 
 const windows: Window[] = [rootWindow]
 
@@ -30,9 +34,15 @@ export function clearHistoryTo(index: number)
  * @param {Window} window the window to set & display
  */
 export function gotoWindow(window: Window) {
+    clear(root)
     // store current window and add to window stack
     windows.push(window)
-    window.display();
+    window.display(root);
+}
+
+export function refresh() {
+    clear(root)
+    currentWindow().display(root);
 }
 
 /**
@@ -41,7 +51,7 @@ export function gotoWindow(window: Window) {
 export function back() {
     if (windows.length<=1) return; // do not exit outermost window
     windows.pop()
-    currentWindow().display()
+    currentWindow().display(root)
 }
 
 export function handleInput(event: KeyboardEvent) {
@@ -62,4 +72,4 @@ document.body.onkeydown = function (event) {
     currentWindow().handleInput(event)
 };
 
-windows[0].display();
+windows[0].display(root);
