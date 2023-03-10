@@ -1,5 +1,6 @@
-import { TraversableMenu, Menu } from "./menu";
+import { Menu } from "./menu";
 import { createButton } from "./elements";
+import { TraversableMenu } from "./traversablemenu";
 
 export type Choice = {
     /** Input displayed for this choice that will select it */

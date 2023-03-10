@@ -1,7 +1,10 @@
-import { TraversableMenu, Menu, OverflowRule } from "./menu"
+import { Menu } from "./menu"
 import { ChoiceMenu } from "./choice"
+import { OverflowRule, TraversableMenu } from "./traversablemenu"
 
 export class NavMenu extends ChoiceMenu {
+    linkEnd = false
+
     constructor() {
         super([
             {input: "M", aliases: [], label: "Map", effect: () => {this.showToast("map")}},
@@ -10,13 +13,19 @@ export class NavMenu extends ChoiceMenu {
             {input: "B", aliases: [], label: "Battle", effect: () => {this.showToast("battle")}},
         ], false)
         this.element.classList.add("terminal-menu", "bipole-nav-menu")
+
+        this.toast = document.getElementById("navtoast")
     }
 }
 
 export class OutputMenu extends TraversableMenu {
+    linkStart = false
+
+    startOverflow: "row" | "column" | "none" = "column"
+
     constructor() {
         super()
-        this.children = [null]
+        this.children = [null] // this one empty child will be replaced by currently shown menu when the game starts
     }
 
     setMenu(menu: Menu) {
@@ -37,6 +46,8 @@ export class RootMenu extends TraversableMenu {
 
     /** Output element where out menu should display to */
     outElement: HTMLElement
+
+    direction: "row" | "column" = "column";
 
     constructor() {
         super(document.body)
