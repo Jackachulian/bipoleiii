@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 // Stores the element that was last focused, incase focus is lost
 let lastFocusedElement: HTMLElement = null
 
