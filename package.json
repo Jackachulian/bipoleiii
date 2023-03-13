@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/InstallBipole/BipoleIII#readme",
   "devDependencies": {
+    "@types/jquery": "^3.5.16",
     "@types/node": "^18.14.5",
     "@types/webpack": "^5.28.0",
     "@webpack-cli/generators": "^3.0.1",
