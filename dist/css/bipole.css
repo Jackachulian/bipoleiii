@@ -1,0 +1,39 @@
+button {
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--font-color);
+    padding: 0 4ch 0 0;
+    cursor: pointer;
+    margin-left: 2ch;
+}
+
+button:focus {
+    color: var(--primary-color);
+    outline: none;
+    margin-left: 0px;
+}
+
+button:focus::before {
+    content: "> ";
+}
+
+.bipole-choice-group {
+    
+}
+
+.bipole-choice:hover {
+    color: var(--primary-color)
+}
+
+.bipole-nav {
+    margin-top: 1lh;
+    margin-bottom: 1lh;
+    height: 3em;
+    display: flex;
+}
+
+.bipole-nav-items {
+    flex: 1;
+}
